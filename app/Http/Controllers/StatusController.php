@@ -20,7 +20,7 @@ class StatusController extends Controller
      */
     public function create()
     {
-        //
+        return view("status/add");
     }
 
     /**
@@ -28,7 +28,12 @@ class StatusController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data=[
+            'reservation_id'=>$request->reservation_id,
+            'medicine'=>$request->medicine,
+            	'ill'=>$request->ill,
+                'analysis'=>$request->analysis];
+        status::create($data);
     }
 
     /**
@@ -42,9 +47,10 @@ class StatusController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(status $status)
+    public function edit($id)
     {
-        //
+        $status=status::findOrFail($d);
+        return view('status.edit',['status'=>$status]);
     }
 
     /**
@@ -52,7 +58,13 @@ class StatusController extends Controller
      */
     public function update(Request $request, status $status)
     {
-        //
+        $data=[
+            'reservation_id'=>$request->reservation_id,
+            'medicine'=>$request->medicine,
+            	'ill'=>$request->ill,
+                'analysis'=>$request->analysis];
+                $status=status::findOrFail($d);
+                $status->update[$data];
     }
 
     /**
@@ -60,6 +72,7 @@ class StatusController extends Controller
      */
     public function destroy(status $status)
     {
-        //
+        $res=status::FindOrFail($id)  ;
+        $res->delete();
     }
 }
