@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->foreignid('specialization_id')->
             references('id')->on('specializations')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

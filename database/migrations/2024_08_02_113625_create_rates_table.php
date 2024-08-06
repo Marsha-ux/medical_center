@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignid('doctor_id')->
             references('id')->on('doctors')->onDelete('cascade');
             $table->integer('rate');
-          
+            $table->timestamps();
         });
     }
 
