@@ -12,7 +12,8 @@ class SpecializationController extends Controller
      */
     public function index()
     {
-        //
+        $Specializations=specialization::orderBy('id','DESC')->paginate();
+        return view ('specialization.index',compact('Specializations'));
     }
 
     /**
@@ -20,7 +21,7 @@ class SpecializationController extends Controller
      */
     public function create()
     {
-        //
+        return view ('specialization.create');
     }
 
     /**
@@ -28,7 +29,14 @@ class SpecializationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data= $request->validate([
+
+            'name'=>['required','string','min:2','max:50'],
+
+
+           ]);
+           specialization::create($data);
+           return back()->with('success','Data added successfully');
     }
 
     /**
@@ -58,8 +66,10 @@ class SpecializationController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(specialization $specialization)
+    public function destroy(string $id)
     {
-        //
+        $Specialization=specialization::findOrFail($id);
+        $Specialization->delete();
+        return back()->with('success','Data Deleted successfully');
     }
 }

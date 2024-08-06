@@ -2,6 +2,15 @@
 
 
 
+
+
+
+
+
+
+
+
+
 @extends('adminlte::page')
 
 @section('title', 'Dashboard')
@@ -12,7 +21,9 @@
 
 @section('content')
 
+
 @section('content')
+
 
 
 
@@ -35,8 +46,7 @@
  <th>#</th>
  <th>Name</th>
  <th>Email</th>
- <td>specialization</td>
- <th>Rate</th>
+ <th>specialization</th>
  <th>Edit</th>
  <th>Delete</th>
 
@@ -57,18 +67,7 @@
 <td>{{$loop->iteration}}</td>
 <td>{{$doctor->name}}</td>
 <td>{{$doctor->email}}</td>
-<td>{{ $doctor->specialization->name}}</td>
-
-<td>
-    <span class="badge bg-warning">
-
-        {{$doctor->getRate()}}
-
-    </span>
-
-    </td>
-
-
+<td>{{$doctor->specialization->name}}</td>
 
 
 <td><a href="{{ route("doctors.edit",$doctor->id)}}" class="btn btn-info">Edit</a></td>
@@ -108,7 +107,6 @@
 @section('js')
     <script> console.log("Hi, I'm using the Laravel-AdminLTE package!"); </script>
 @stop
-
 
 
 
